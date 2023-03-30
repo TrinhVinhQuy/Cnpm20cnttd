@@ -66,10 +66,10 @@
             }
         }
         function showImg1(img) {
-            $('#hibodywrapper_imgPreview1').attr('src', img);
+            $('#hibodywrapper_imgPreview1').attr('src', "../images_SanPham/"+img);
         }
         function showImg1_1(img) {
-            $('#imgPreview1').attr('src', img);
+            $('#imgPreview1').attr('src', "../images_SanPham/" + img);
         }
         //document.getElementById("userinput").onkeyup = function () {
         //    this.value = parseFloat(this.value.replace(/,/g, ""))
@@ -165,7 +165,7 @@
                                             <div id="up1" class="">
                                                 <asp:FileUpload CssClass="hidden-xs-up" ID="FileUpload1" runat="server" onchange="showPreview1(this)" />
                                                 <button type="button" class="btn-chang" onclick="clickavatar1()">
-                                                    <img id="imgPreview1" src="/admin_images/up-img.png" style="width: 100%" />
+                                                    <img id="imgPreview1" src="../admin_images/up-img.png" style="width: 100%" />
                                                 </button>
                                             </div>
                                         </div>
