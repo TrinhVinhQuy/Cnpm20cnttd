@@ -18,8 +18,12 @@
             </center>
             <br />
             <br />
+            <div>
+                <asp:DropDownList runat="server" ID="dllDangMuc" CssClass="form-control mb-2" Width="20%" OnSelectedIndexChanged="dllDangMuc_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
             <table class="table">
                 <tr>
+                    <th>Stt</th>
                     <th>Tên sản phẩm</th>
                     <th>Sản phẩm</th>
                     <th>Số lượng</th>
@@ -30,9 +34,10 @@
                 <asp:Repeater runat="server" ID="rpNhapHang">
                     <ItemTemplate>
                         <tr>
+                            <td><%=stt++ %></td>
                             <td><%#Eval("product_title") %></td>
                             <td>
-                                <img style="width: 20%" src="<%#Eval("product_image") %>" alt="Alternate Text" />
+                                <img style="width: 20%" src="../images_SanPham/<%#Eval("product_image") %>" alt="Alternate Text" />
                             </td>
                             <td>
                                 <div style="display: flex">
@@ -48,12 +53,12 @@
                             </td>
                             <td>
                                 <div style="display: flex">
-                                    <span class="mr-1"><%#Eval("product_promotions") %></span>
+                                    <span class="mr-1"><%#Eval("product_price_new") %></span>
                                     <input type="text" id="txtGIAMGIA<%#Eval("product_id") %>" style="width: 50px;" name="name" value="" />
                                 </div>
                             </td>
                             <td>
-                                <a href="#" onclick="getLuu(<%#Eval("product_id") %>,<%#Eval("product_soluong") %>,<%#Eval("product_price") %>,<%#Eval("product_promotions") %>)" class="btn btn-primary">Lưu</a>
+                                <a href="#" onclick="getLuu(<%#Eval("product_id") %>)" class="btn btn-primary">Lưu</a>
                             </td>
                         </tr>
                     </ItemTemplate>

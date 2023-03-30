@@ -24,7 +24,7 @@ public class cls_Product
         insert.product_content = product_content;
         insert.productcate_id = productcate_id;
         insert.product_price = product_price;
-        insert.product_promotions = product_promotions;
+        insert.product_price_new = product_promotions;
         insert.hidden = false;
         //if (SEO_KEYWORD != "")
         //{
@@ -81,7 +81,7 @@ public class cls_Product
         update.product_content = product_content;
         update.productcate_id = productcate_id;
         update.product_price = product_price;
-        update.product_promotions = product_promotions;
+        update.product_price_new = product_promotions;
         //if (SEO_KEYWORD != "")
         //{
         //    update.meta_keywords = SEO_KEYWORD;

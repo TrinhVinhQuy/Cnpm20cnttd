@@ -35,7 +35,7 @@ public partial class admin_page_module_function_module_sanpham_module_ListSanPha
         // load data đổ vào var danh sách
         var getData = from n in db.tbProducts
                       join nc in db.tbProductCates on n.productcate_id equals nc.productcate_id
-                      orderby n.product_id descending
+                      orderby n.product_id
                       select new
                       {
                           n.product_id,
@@ -83,6 +83,7 @@ public partial class admin_page_module_function_module_sanpham_module_ListSanPha
         var getData = (from sp in db.tbProducts
                        join c in db.tbProductCates on sp.productcate_id equals c.productcate_id
                        where sp.product_id == _id
+                       orderby sp.product_id
                        select new
                        {
                            sp.product_id,
@@ -91,14 +92,16 @@ public partial class admin_page_module_function_module_sanpham_module_ListSanPha
                            sp.product_content,
                            sp.product_image,
                            sp.product_price,
+                           sp.product_price_new,
                            c.productcate_title
 
                        }).Single();
         txt_Tensanpham.Text = getData.product_title;
-        txt_Summary.Value = getData.product_summary;
+        //txt_Summary.Value = getData.product_summary;    
         edtnoidung.Html = getData.product_content;
         ddlloaisanpham.Text = getData.productcate_title;
-        txt_Price.Text = getData.product_price+"";
+        txt_Price.Text = getData.product_price_new + "";
+        txt_Promotions.Text = getData.product_price + "";
         //SEO_KEYWORD.Text = getData.meta_keywords;
         //SEO_TITLE.Text = getData.meta_tittle;
         //SEO_LINK.Text = getData.link_seo;
@@ -137,7 +140,7 @@ public partial class admin_page_module_function_module_sanpham_module_ListSanPha
     }
     public bool checknull()
     {
-        if (edtnoidung.Html != "" || txt_Summary.Value != "")
+        if (edtnoidung.Html != "" /*|| txt_Summary.Value != ""*/)
             return true;
         else return false;
     }
@@ -199,7 +202,7 @@ public partial class admin_page_module_function_module_sanpham_module_ListSanPha
             {
                 if (image == null)
                     image = "/admin_images/up-img.png";
-                if (cls.Linq_Them(txt_Tensanpham.Text, txt_Summary.Value, image, edtnoidung.Html, Convert.ToInt32(ddlloaisanpham.Value), Convert.ToInt32(txt_Price.Text), Convert.ToInt32(txt_Promotions.Text)))
+                if (cls.Linq_Them(txt_Tensanpham.Text, /*txt_Summary.Value*/null, image, edtnoidung.Html, Convert.ToInt32(ddlloaisanpham.Value), Convert.ToInt32(txt_Price.Text), Convert.ToInt32(txt_Promotions.Text)))
                 {
                     popupControl.ShowOnPageLoad = false;
                     ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "AlertBox", "swal('Thêm thành công!', '','success').then(function(){window.location = '/admin-quan-ly-san-pham';})", true);
@@ -210,7 +213,7 @@ public partial class admin_page_module_function_module_sanpham_module_ListSanPha
             {
                 if (image == null)
                     image = txt_Image.Value;
-                if (cls.Linq_Sua(Convert.ToInt32(Session["_id"].ToString()), txt_Tensanpham.Text, txt_Summary.Value, image, edtnoidung.Html, Convert.ToInt32(ddlloaisanpham.Value), Convert.ToInt32(txt_Price.Text), Convert.ToInt32(txt_Promotions.Text)))
+                if (cls.Linq_Sua(Convert.ToInt32(Session["_id"].ToString()), txt_Tensanpham.Text,/* txt_Summary.Value*/null, image, edtnoidung.Html, Convert.ToInt32(ddlloaisanpham.Value), Convert.ToInt32(txt_Price.Text), Convert.ToInt32(txt_Promotions.Text)))
                 {
                     popupControl.ShowOnPageLoad = false;
                     ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "AlertBox", "swal('Cập nhật thành công!', '','success').then(function(){window.location = '/admin-quan-ly-san-pham';})", true);

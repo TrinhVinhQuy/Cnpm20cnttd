@@ -7,7 +7,7 @@
     <title></title>
     <script>
         window.onload = function () {
-            window.location = '/admin-login';
+            window.location = '/login';
         }
     </script>
 </head>

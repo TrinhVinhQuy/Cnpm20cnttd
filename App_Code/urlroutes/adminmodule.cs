@@ -26,7 +26,7 @@ public class adminmodule
 
         //Quản lý sản phẩm
         list.Add("modulesnhomanpham|admin-quan-ly-nhom-san-pham|~/admin_page/module_function/module_sanpham/module_NhomSanPham.aspx");
-        list.Add("modulesanpham|admin-quan-ly-san-pham|~/admin_page/module_function/module_sanpham/module_ListSanPham.aspx");
+        list.Add("modulesanpham|admin-quan-ly-san-pham|~/admin_page/module_function/module_thongke/module_ListSanPham.aspx");
         list.Add("modulenhaphang|admin-quan-ly-nhap-hang|~/admin_page/module_function/module_sanpham/module_NhapHang.aspx");
         list.Add("modulenhaphangthemmoi|admin-nhap-hang|~/admin_page/module_function/module_sanpham/module_NhapHangInsert.aspx");
         list.Add("modulenhaphangupdate|admin-nhap-hang-{id}|~/admin_page/module_function/module_sanpham/module_NhapHangUpdate.aspx");

@@ -100,10 +100,10 @@
                     </dx:GridViewCommandColumn>
                     <dx:GridViewDataColumn Caption="Nhóm sản phẩm" FieldName="productcate_title" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
                     <dx:GridViewDataColumn Caption="Tên sản phẩm" FieldName="product_title" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
-                    <dx:GridViewDataColumn Caption="Mô tả" FieldName="product_summary" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
+                    <%--<dx:GridViewDataColumn Caption="Mô tả" FieldName="product_summary" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>--%>
                     <dx:GridViewDataColumn Caption="Hình ảnh" Width="120px" FieldName="product_image" HeaderStyle-HorizontalAlign="Center">
                         <DataItemTemplate>
-                            <img src="<%#Eval("product_image") %>" width="120" />
+                            <img src="../images_SanPham/<%#Eval("product_image") %>" width="120" />
                         </DataItemTemplate>
                     </dx:GridViewDataColumn>
                 </Columns>

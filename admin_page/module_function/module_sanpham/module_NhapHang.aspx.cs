@@ -10,26 +10,36 @@ public partial class admin_page_module_function_module_NhapHang : System.Web.UI.
 {
     dbcsdlDataContext db = new dbcsdlDataContext();
     cls_Alert alert = new cls_Alert();
-    private int stt = 1;
+    public int stt = 1;
     private int _id;
     protected void Page_Load(object sender, EventArgs e)
     {
-        loaddata();
+        if (!IsPostBack)
+        {
+            var listDanhMuc = from prc in db.tbProductCates
+                              select prc;
+            dllDangMuc.Items.Clear();
+            dllDangMuc.AppendDataBoundItems = true;
+            dllDangMuc.Items.Insert(0, "Chọn danh mục");
+            dllDangMuc.DataTextField = "productcate_title";
+            dllDangMuc.DataValueField = "productcate_id";
+            dllDangMuc.DataSource = listDanhMuc;
+            dllDangMuc.DataBind();
+        }
     }
     private void loaddata()
     {
-        var getSanPham = from hd in db.tbHoaDonBanHangs
-                         join hdct in db.tbHoaDonBanHangChiTiets on hd.hoadon_id equals hdct.hoadon_id
-                         join pr in db.tbProducts on hdct.product_id equals pr.product_id
+        var getSanPham = from prc in db.tbProductCates
+                         join pr in db.tbProducts on prc.productcate_id equals pr.productcate_id
+                         where prc.productcate_id == Convert.ToInt32(dllDangMuc.SelectedValue)
                          select new
                          {
-                             hd.hoadon_id,
                              pr.product_id,
                              pr.product_title,
                              pr.product_image,
                              pr.product_soluong,
                              pr.product_price,
-                             pr.product_promotions
+                             pr.product_price_new,
                          };
         rpNhapHang.DataSource = getSanPham;
         rpNhapHang.DataBind();
@@ -50,10 +60,15 @@ public partial class admin_page_module_function_module_NhapHang : System.Web.UI.
         }
         if (txtgiamgia.Value != "")
         {
-            update.product_promotions = Convert.ToInt32(txtgiamgia.Value);
+            update.product_price_new = Convert.ToInt32(txtgiamgia.Value);
         }
         db.SubmitChanges(); loaddata();
         alert.alert_Success(Page, "Cập nhật thành công", "");
 
+    }
+
+    protected void dllDangMuc_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        loaddata();
     }
 }

@@ -8,37 +8,31 @@ using System.Web.UI.WebControls;
 public partial class web_module_module_Login : System.Web.UI.Page
 {
     dbcsdlDataContext db = new dbcsdlDataContext();
+    cls_Alert alert = new cls_Alert();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            if (Request.Cookies["UserNameWeb"] != null)
-            {
-                txtuser.Value = Request.Cookies["UserNameWeb"].Value;
-            }
-        }
+
     }
 
-    protected void btnLgon_ServerClick(object sender, EventArgs e)
+    protected void btnLogin_ServerClick(object sender, EventArgs e)
     {
-        var check = from kh in db.tbCustomerAccounts
-                    where kh.customer_user == txtuser.Value
-                    && kh.customer_pass == txtpass.Value
-                    select kh;
-        string userName = txtuser.Value.Trim();
+        var check = from acc in db.tbCustomerAccounts
+                    where acc.customer_user == txtUser.Value
+                    && acc.customer_pass == txtPass.Value
+                    select acc;
         if (check.Count() > 0)
         {
             tbCustomerAccount list = check.Single();
-            HttpCookie ck = new HttpCookie("UserNameWeb");
+            HttpCookie ck = new HttpCookie("User");
             string s = ck.Value;
-            ck.Value = userName;
-            ck.Expires = DateTime.Now.AddDays(365);
+            ck.Value = txtUser.Value;
+            ck.Expires = DateTime.Now.AddDays(1);
             Response.Cookies.Add(ck);
-            Response.Redirect("/trang-chu");
+            Response.Redirect("/home");
         }
         else
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "AlertBox", "swal('Sai tên đăng nhập / mật khẩu!', '','warning')", true);
+            alert.alert_Warning(Page, "Sai thông tin!", "");
         }
     }
 }

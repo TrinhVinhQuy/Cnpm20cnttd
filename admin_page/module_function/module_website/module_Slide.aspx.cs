@@ -117,17 +117,17 @@ public partial class admin_page_module_function_module_Slide : System.Web.UI.Pag
         //{
         if (Page.IsValid && FileUpload1.HasFile)
         {
-            String folderUser = Server.MapPath("~/uploadimages/anh_slide/");
+            String folderUser = Server.MapPath("~/image/");
             if (!Directory.Exists(folderUser))
             {
                 Directory.CreateDirectory(folderUser);
             }
             //string filename;
-            string ulr = "/web_module/image/";
+            string ulr = "../image/";
             HttpFileCollection hfc = Request.Files;
             //string filename = Path.GetRandomFileName() + Path.GetExtension(FileUpload1.FileName);
             string filename = DateTime.Now.ToString("ddMMyyyy_hhmmss_tt_") + FileUpload1.FileName;
-            string fileName_save = Path.Combine(Server.MapPath("~/web_module/image"), filename);
+            string fileName_save = Path.Combine(Server.MapPath("~/image"), filename);
             FileUpload1.SaveAs(fileName_save);
             image = ulr + filename;
         }
