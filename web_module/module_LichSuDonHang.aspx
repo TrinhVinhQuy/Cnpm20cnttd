@@ -6,6 +6,7 @@
     <center>
         <br />
         <br />
+        <h1 class="text-center">Lịch sử mua hàng</h1>
         <table class="table table-bordered" style="width: 50%">
             <tr>
                 <th>#</th>
