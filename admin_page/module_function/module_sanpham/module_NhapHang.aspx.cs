@@ -21,8 +21,8 @@ public partial class admin_page_module_function_module_NhapHang : System.Web.UI.
             dllDangMuc.Items.Clear();
             dllDangMuc.AppendDataBoundItems = true;
             dllDangMuc.Items.Insert(0, "Chọn danh mục");
-            dllDangMuc.DataTextField = "productcate_title";
-            dllDangMuc.DataValueField = "productcate_id";
+            dllDangMuc.DataTextField = "productcate_title"; //đầm
+            dllDangMuc.DataValueField = "productcate_id"; //6
             dllDangMuc.DataSource = listDanhMuc;
             dllDangMuc.DataBind();
         }

@@ -35,6 +35,7 @@ public partial class admin_page_module_function_module_sanpham_module_ListSanPha
         // load data đổ vào var danh sách
         var getData = from n in db.tbProducts
                       join nc in db.tbProductCates on n.productcate_id equals nc.productcate_id
+                      where n.hidden == false
                       orderby n.product_id
                       select new
                       {

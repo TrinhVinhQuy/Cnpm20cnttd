@@ -28,6 +28,9 @@ public class webui
         list.Add("webchitiet|chi-tiet-{id_ct}|~/web_module/module_ChiTiet.aspx");
         //Sản phẩm
         list.Add("websanpham|san-pham-{id_ctsp}|~/web_module/module_ChiTietSanPham.aspx");
+        list.Add("webgiohang|gio-hang|~/web_module/module_Cart.aspx");
+        list.Add("weblichsudonhang|lich-su-don-hang|~/web_module/module_LichSuDonHang.aspx");
+        list.Add("webthongtinkhachhang|thong-tin-khach-hang|~/web_module/module_ThongTinKhachHang.aspx");
         return list;
     }
 }
