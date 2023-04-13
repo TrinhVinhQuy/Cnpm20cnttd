@@ -39,8 +39,9 @@ public partial class admin_page_module_function_module_thongke_module_ThongKeDoa
         else
         {
             var getDT = from hd in db.tbHoaDonBanHangs
-                        where hd.hoadon_createdate.Value.Date >= Convert.ToDateTime(txt_TuNgay.Value).Date
-                        && hd.hoadon_createdate.Value.Date <= Convert.ToDateTime(txt_DenNgay.Value).Date
+                        where hd.hoadon_giothanhtoan.Value.Date >= Convert.ToDateTime(txt_TuNgay.Value).Date
+                        && hd.hoadon_giothanhtoan.Value.Date <= Convert.ToDateTime(txt_DenNgay.Value).Date
+                        orderby hd.hoadon_giothanhtoan descending
                         select hd;
             rpDoanhThu.DataSource = getDT;
             rpDoanhThu.DataBind();

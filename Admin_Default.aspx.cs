@@ -31,7 +31,7 @@ public partial class Admin_Default : System.Web.UI.Page
         try
         {
             var getDTHN = from hd in db.tbHoaDonBanHangs
-                              where hd.hoadon_createdate.Value.Date == DateTime.Now.Date
+                              where hd.hoadon_giothanhtoan.Value.Date == DateTime.Now.Date
                               //&& hd.hidden==false
                           select hd;
             if (getDTHN.Count() > 0)

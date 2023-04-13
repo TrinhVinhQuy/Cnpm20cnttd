@@ -6,15 +6,16 @@
       <Column Name="guf_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="groupuser_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="form_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="admin_Form_admin_AccessGroupUserForm" Member="admin_Form" ThisKey="form_id" OtherKey="form_id" Type="admin_Form" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="admin_GroupUser_admin_AccessGroupUserForm" Member="admin_GroupUser" ThisKey="groupuser_id" OtherKey="groupuser_id" Type="admin_GroupUser" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
-  <Table Name="hel13271_nails.tbNhomDichVu" Member="tbNhomDichVus">
-    <Type Name="tbNhomDichVu">
-      <Column Name="dvcate_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="dvcate_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+  <Table Name="dbo.tbXuatHang_ChiTiet" Member="tbXuatHang_ChiTiets">
+    <Type Name="tbXuatHang_ChiTiet">
+      <Column Name="xuathang_chitiet_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="xuathang_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="product_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="xuathang_chitiet_soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.admin_AccessGroupUserModule" Member="admin_AccessGroupUserModules">
@@ -45,7 +46,6 @@
       <Column Name="form_link" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="form_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="module_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="admin_Form_admin_AccessGroupUserForm" Member="admin_AccessGroupUserForms" ThisKey="form_id" OtherKey="form_id" Type="admin_AccessGroupUserForm" />
       <Association Name="admin_Form_admin_AccessUserForm" Member="admin_AccessUserForms" ThisKey="form_id" OtherKey="form_id" Type="admin_AccessUserForm" />
       <Association Name="admin_Module_admin_Form" Member="admin_Module" ThisKey="module_id" OtherKey="module_id" Type="admin_Module" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
@@ -271,6 +271,15 @@
       <Column Name="hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbSanPhamYeuThich" Member="tbSanPhamYeuThiches">
+    <Type Name="tbSanPhamYeuThich">
+      <Column Name="spyt_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="product_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="khachhang_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="spyt_hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="spyt_color" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.tbSlide" Member="tbSlides">
     <Type Name="tbSlide">
       <Column Name="slide_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -291,15 +300,6 @@
       <Column Name="xuathang_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="username_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbXuatHang_ChiTiet" Member="tbXuatHang_ChiTiets">
-    <Type Name="tbXuatHang_ChiTiet">
-      <Column Name="xuathang_chitiet_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="xuathang_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="product_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="xuathang_chitiet_soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="username_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

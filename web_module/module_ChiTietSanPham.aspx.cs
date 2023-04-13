@@ -15,21 +15,24 @@ public partial class web_module_module_ChiTietSanPham : System.Web.UI.Page
     cls_Alert alert = new cls_Alert();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Cookies["User"].Value != null)
+        if (!IsPostBack)
         {
-            //admin_User getusername = Session["AdminLogined"] as admin_User;
-            _idKhach = (from acc in db.tbCustomerAccounts
-                        where acc.customer_user == Request.Cookies["User"].Value
-                        select acc).FirstOrDefault().customer_id;
-        }
-        else
-        {
-            Response.Redirect("/login");
+            if (Request.Cookies["User"].Value != null)
+            {
+                //admin_User getusername = Session["AdminLogined"] as admin_User;
+                _idKhach = (from acc in db.tbCustomerAccounts
+                            where acc.customer_user == Request.Cookies["User"].Value
+                            select acc).FirstOrDefault().customer_id;
+            }
+            else
+            {
+                Response.Redirect("/login");
+            }
         }
         var getChiTiet = from pr in db.tbProducts
                          join prc in db.tbProductCates on pr.productcate_id equals prc.productcate_id
                          join ct in db.tbCities on Convert.ToInt32(pr.h1_seo) equals ct.city_id
-                         where pr.product_id ==  Convert.ToInt32(RouteData.Values["id_ctsp"])
+                         where pr.product_id == Convert.ToInt32(RouteData.Values["id_ctsp"])
                          select new
                          {
                              pr.product_id,
@@ -60,7 +63,7 @@ public partial class web_module_module_ChiTietSanPham : System.Web.UI.Page
 
         Cart cart = new Cart();
         Session.Timeout = 10;
-        if(Session["Cart"] != null)
+        if (Session["Cart"] != null)
         {
             cart = (Cart)Session["Cart"];
         }

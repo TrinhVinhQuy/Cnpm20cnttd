@@ -59,6 +59,14 @@
                 background-color: #F58A20;
                 text-decoration: none
             }
+
+        .fa-tim {
+            position: absolute;
+            z-index: 1;
+            top: 6%;
+            left: 15%;
+            font-size: 23px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -97,6 +105,9 @@
                     <asp:Repeater runat="server" ID="rpChiTietSanPham">
                         <ItemTemplate>
                             <div class="col-3 p-2">
+                                <a href="#" style="<%#Eval("color") %>" onclick="getLike(<%#Eval("product_id") %>)">
+                                    <i class="fa fa-heart-o fa-tim" aria-hidden="true"></i>
+                                </a>
                                 <a href="/san-pham-<%#Eval("product_id") %>">
                                     <div class="card p-2">
                                         <img src="../images_SanPham/<%#Eval("product_image") %>" alt="Alternate Text" />
@@ -116,8 +127,10 @@
         </div>
         <div style="display: none">
             <input type="text" id="txtTH" runat="server" name="name" value="" />
+            <input type="text" id="txtLike" runat="server" name="name" value="" />
             <a href="#" runat="server" id="btnChangeTH" onserverclick="btnChangeTH_ServerClick">content</a>
             <a href="#" runat="server" id="btnBoChon" onserverclick="btnBoChon_ServerClick">content</a>
+            <a href="#" runat="server" id="btnLike" onserverclick="btnLike_ServerClick">content</a>
             <script>
                 function ChangeThuongHieu(text) {
                     document.getElementById("<%=txtTH.ClientID%>").value = text;
@@ -126,6 +139,10 @@
                 }
                 function BoChon() {
                     document.getElementById("<%=btnBoChon.ClientID%>").click();
+                }
+                function getLike(id) {
+                    document.getElementById("<%=txtLike.ClientID%>").value = id;
+                    document.getElementById("<%=btnLike.ClientID%>").click();
                 }
             </script>
         </div>

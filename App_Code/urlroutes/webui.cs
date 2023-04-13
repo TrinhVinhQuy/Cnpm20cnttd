@@ -31,6 +31,7 @@ public class webui
         list.Add("webgiohang|gio-hang|~/web_module/module_Cart.aspx");
         list.Add("weblichsudonhang|lich-su-don-hang|~/web_module/module_LichSuDonHang.aspx");
         list.Add("webthongtinkhachhang|thong-tin-khach-hang|~/web_module/module_ThongTinKhachHang.aspx");
+        list.Add("websanphamyeuthich|sp-yeu-thich|~/web_module/module_SanPhamYeuThich.aspx");
         return list;
     }
 }

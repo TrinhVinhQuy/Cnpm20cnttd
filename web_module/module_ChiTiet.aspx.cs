@@ -61,6 +61,7 @@ public partial class web_module_module_ChiTiet : System.Web.UI.Page
         var getChiTiet = from pr in db.tbProducts
                          join prc in db.tbProductCates on pr.productcate_id equals prc.productcate_id
                          join ct in db.tbCities on Convert.ToInt32(pr.h1_seo) equals ct.city_id
+                         //join yt in db.tbSanPhamYeuThiches on pr.product_id equals yt.product_id
                          where prc.productcate_id == Convert.ToInt32(RouteData.Values["id_ct"])
                          select new
                          {
@@ -70,12 +71,55 @@ public partial class web_module_module_ChiTiet : System.Web.UI.Page
                              ct.city_name,
                              pr.product_price_new,
                              pr.product_price,
+                             color = (from yt in db.tbSanPhamYeuThiches
+                                      where yt.product_id == pr.product_id && yt.spyt_hidden == null
+                                      select yt).FirstOrDefault().spyt_color,
                          };
         rpChiTietSanPham.DataSource = getChiTiet;
         rpChiTietSanPham.DataBind();
     }
     protected void btnBoChon_ServerClick(object sender, EventArgs e)
     {
+        LoadData();
+    }
+
+    protected void btnLike_ServerClick(object sender, EventArgs e)
+    {
+        var id = (from acc in db.tbCustomerAccounts
+                  where acc.customer_user == Request.Cookies["User"].Value
+                  select acc).FirstOrDefault().customer_id;
+        var check = from yt in db.tbSanPhamYeuThiches
+                    where yt.product_id == Convert.ToInt32(txtLike.Value)
+                    && yt.spyt_hidden == null
+                    && yt.khachhang_id == id
+                    select yt;
+        if (check.Count() > 0)
+        {
+            tbSanPhamYeuThich delete = db.tbSanPhamYeuThiches.Where(x => x.spyt_id == check.FirstOrDefault().spyt_id).FirstOrDefault();
+            delete.spyt_hidden = false;
+            try
+            {
+                db.SubmitChanges();
+            }
+            catch
+            {
+            }
+        }
+        else
+        {
+            tbSanPhamYeuThich ins = new tbSanPhamYeuThich();
+            ins.product_id = Convert.ToInt32(txtLike.Value);
+            ins.khachhang_id = id;
+            ins.spyt_color = "color: red;";
+            db.tbSanPhamYeuThiches.InsertOnSubmit(ins);
+            try
+            {
+                db.SubmitChanges();
+            }
+            catch
+            {
+            }
+        }
         LoadData();
     }
 }
