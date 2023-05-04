@@ -10,6 +10,16 @@ public partial class web_module_Default : System.Web.UI.Page
     dbcsdlDataContext db = new dbcsdlDataContext();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Cookies["User"] != null)
+        {
+            if (!IsPostBack)
+            {
+            }
+        }
+        else
+        {
+            Response.Redirect("/login");
+        }
         var getSlide = from sl in db.tbSlides
                        select sl;
         rpSlide.DataSource = getSlide.Take(1);

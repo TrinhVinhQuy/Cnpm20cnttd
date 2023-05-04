@@ -75,11 +75,17 @@
                                 <i class="fa fa-users" aria-hidden="true"></i>
                             </a>
                         </div>
-                        <div>
+                        <div class="mr-3">
                             <a href="/lich-su-don-hang" style="color: black">
                                 <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                             </a>
                         </div>
+                        <div>
+                            <a href="#" style="color: black" runat="server" id="btnLogout" onserverclick="btnLogout_ServerClick">
+                                <i class="fa fa-power-off icon" aria-hidden="true"></i>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>

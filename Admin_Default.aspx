@@ -36,7 +36,7 @@
                                     <tr>
                                         <td><%#Container.ItemIndex+1 %></td>
                                         <td>
-                                            <%#Convert.ToDateTime(Eval("hoadon_createdate")).ToShortDateString()%>
+                                            <%#Convert.ToDateTime(Eval("hoadon_giothanhtoan")).ToShortDateString()%>
                                         </td>
                                         <td>
                                             <%#Eval("khachhang_name") %>

@@ -11,7 +11,10 @@ public partial class web_module_module_Login : System.Web.UI.Page
     cls_Alert alert = new cls_Alert();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Request.Cookies["User"] != null)
+        {
+            Response.Redirect("/home");
+        }
     }
 
     protected void btnLogin_ServerClick(object sender, EventArgs e)
