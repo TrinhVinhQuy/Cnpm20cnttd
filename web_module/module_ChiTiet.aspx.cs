@@ -49,12 +49,14 @@ public partial class web_module_module_ChiTiet : System.Web.UI.Page
                              ct.city_name,
                              pr.product_price_new,
                              pr.product_price,
-
-
-                             pr.product_content
+                             pr.product_content,
+                             color = (from yt in db.tbSanPhamYeuThiches
+                                      where yt.product_id == pr.product_id && yt.spyt_hidden == null
+                                      select yt).FirstOrDefault().spyt_color,
                          };
         rpChiTietSanPham.DataSource = getChiTiet;
         rpChiTietSanPham.DataBind();
+        //LoadData();
     }
     protected void LoadData()
     {

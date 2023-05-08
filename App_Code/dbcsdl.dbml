@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ql" Class="dbcsdlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-LM2PA7D\SQLEXPRESS;Initial Catalog=ql;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="qlConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="qlbanhangVQ" Class="dbcsdlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=qlbanhangVQ.mssql.somee.com;Initial Catalog=qlbanhangVQ;Persist Security Info=False;User ID=dbvinhquy" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="qlbanhangVQConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.admin_AccessGroupUserForm" Member="admin_AccessGroupUserForms">
     <Type Name="admin_AccessGroupUserForm">
       <Column Name="guf_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

@@ -1,0 +1,9 @@
+Hướng dẫn sử dụng:
+
+ + Trang chủ kích vào đường link dưới đây: đăng nhập với tài khoản user(TK:Quy1402  MK:123456)
+   http://banxetaicu.somee.com/login
+
+ + Trang admin kích vào đường link dưới đây: đăng nhập với tài khoản 
+   http://banxetaicu.somee.com/admin-login
+   . Tài khoản admin: ( TK: admin - MK:12345)
+   . Tài khoản nhân viên: ( TK: quy - MK:12345) ( TK: long - MK:12345) ( TK: nhan - MK:12345)

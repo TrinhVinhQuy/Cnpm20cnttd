@@ -21,7 +21,7 @@ using System.Reflection;
 
 
 
-[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ql")]
+[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="qlbanhangVQ")]
 public partial class dbcsdlDataContext : System.Data.Linq.DataContext
 {
 	
@@ -104,7 +104,7 @@ public partial class dbcsdlDataContext : System.Data.Linq.DataContext
   #endregion
 	
 	public dbcsdlDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["qlConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["qlbanhangVQConnectionString"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
