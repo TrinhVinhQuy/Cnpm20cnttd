@@ -22,6 +22,7 @@ public partial class web_module_module_ThongTinKhachHang : System.Web.UI.Page
         txtSdt.Value = getTT.FirstOrDefault().customer_phone;
         txtDiaChi.Value = getTT.FirstOrDefault().customer_address;
         txtEmail.Value = getTT.FirstOrDefault().customer_email;
+        txtPass.Value = getTT.FirstOrDefault().customer_pass;
     }
     protected void btnLuu_ServerClick(object sender, EventArgs e)
     {
@@ -33,6 +34,7 @@ public partial class web_module_module_ThongTinKhachHang : System.Web.UI.Page
         update.customer_address = diachi.Value;
         update.customer_phone = sdt.Value;
         update.customer_email = email.Value;
+        update.customer_pass = pass.Value;
         db.SubmitChanges();
         alert.alert_Success(Page, "Cập nhật thông tin thành công", "");
         loadData();

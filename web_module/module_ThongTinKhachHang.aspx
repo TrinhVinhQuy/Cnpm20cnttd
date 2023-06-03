@@ -32,6 +32,8 @@
             <input type="text" runat="server" id="txtSdt" name="name" value="" />
             <label>Email</label>
             <input type="text" runat="server" id="txtEmail" name="name" value="" />
+            <label>Mật khẩu</label>
+            <input type="text" runat="server" id="txtPass" name="name" value="" />
             <br />
             <div style="display: grid; justify-items: center;">
                 <a href="#" class="input-dangnhap" onclick="getTT()">Lưu</a>
@@ -45,6 +47,7 @@
             <input type="text" runat="server" id="diachi" name="name" value="" />
             <input type="text" runat="server" id="sdt" name="name" value="" />
             <input type="text" runat="server" id="email" name="name" value="" />
+            <input type="text" runat="server" id="pass" name="name" value="" />
         </div>
         <script>
             function getTT() {
@@ -52,6 +55,7 @@
                 document.getElementById("<%=diachi.ClientID%>").value = document.getElementById("<%=txtDiaChi.ClientID%>").value;
                 document.getElementById("<%=sdt.ClientID%>").value = document.getElementById("<%=txtSdt.ClientID%>").value;
                 document.getElementById("<%=email.ClientID%>").value = document.getElementById("<%=txtEmail.ClientID%>").value;
+                document.getElementById("<%=pass.ClientID%>").value = document.getElementById("<%=txtPass.ClientID%>").value;
                 document.getElementById("<%=btnLuu.ClientID%>").click();
             }
         </script>
