@@ -35,6 +35,9 @@ public partial class web_module_module_ChiTiet : System.Web.UI.Page
 
     protected void btnChangeTH_ServerClick(object sender, EventArgs e)
     {
+        var idKhach = (from acc in db.tbCustomerAccounts
+                       where acc.customer_user == Request.Cookies["User"].Value
+                       select acc).FirstOrDefault().customer_id;
         var t = Convert.ToInt32(RouteData.Values["id_ct"]);
         var getChiTiet = from pr in db.tbProducts
                          join prc in db.tbProductCates on pr.productcate_id equals prc.productcate_id
@@ -52,6 +55,7 @@ public partial class web_module_module_ChiTiet : System.Web.UI.Page
                              pr.product_content,
                              color = (from yt in db.tbSanPhamYeuThiches
                                       where yt.product_id == pr.product_id && yt.spyt_hidden == null
+                                       && yt.khachhang_id == idKhach
                                       select yt).FirstOrDefault().spyt_color,
                          };
         rpChiTietSanPham.DataSource = getChiTiet;
@@ -60,6 +64,9 @@ public partial class web_module_module_ChiTiet : System.Web.UI.Page
     }
     protected void LoadData()
     {
+        var idKhach = (from acc in db.tbCustomerAccounts
+                       where acc.customer_user == Request.Cookies["User"].Value
+                       select acc).FirstOrDefault().customer_id;
         var getChiTiet = from pr in db.tbProducts
                          join prc in db.tbProductCates on pr.productcate_id equals prc.productcate_id
                          join ct in db.tbCities on Convert.ToInt32(pr.h1_seo) equals ct.city_id
@@ -75,6 +82,7 @@ public partial class web_module_module_ChiTiet : System.Web.UI.Page
                              pr.product_price,
                              color = (from yt in db.tbSanPhamYeuThiches
                                       where yt.product_id == pr.product_id && yt.spyt_hidden == null
+                                      && yt.khachhang_id == idKhach
                                       select yt).FirstOrDefault().spyt_color,
                          };
         rpChiTietSanPham.DataSource = getChiTiet;

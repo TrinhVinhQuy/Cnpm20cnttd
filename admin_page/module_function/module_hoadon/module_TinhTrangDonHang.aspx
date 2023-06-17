@@ -27,7 +27,7 @@
             }
             return true;
         }
-        function confirmDel() {
+        <%--function confirmDel() {
             swal("Bạn có thực sự muốn xóa?",
                 "Nếu xóa, dữ liệu sẽ không thể khôi phục.",
                 "warning",
@@ -40,13 +40,14 @@
                         xoa.click();
                     }
                 });
-        }
+        }--%>
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return false; return true;
         };
     </script>
+   
     <div class="card card-block">
         <div class="form-group row">
             <div class="col-sm-10">
@@ -54,8 +55,8 @@
                     <ContentTemplate>
                         <%--<asp:Button ID="btnThem" runat="server" Text="Thêm" CssClass="btn btn-primary " OnClick="btnThem_Click" />--%>
                         <asp:Button ID="btnChiTiet" runat="server" Text="Chi tiết" CssClass="btn btn-primary" OnClick="btnChiTiet_Click" />
-                        <input type="submit" class="btn btn-primary " value="Xóa" onclick="confirmDel()" />
-                        <asp:Button ID="btnXoa" runat="server" CssClass="invisible" OnClick="btnXoa_Click" />
+                        <%--<input type="submit" class="btn btn-primary " value="Xóa" onclick="confirmDel()" />--%>
+                        <%--<asp:Button ID="btnXoa" runat="server" CssClass="invisible" OnClick="btnXoa_Click" />--%>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
@@ -65,11 +66,13 @@
                 <Columns>
                     <dx:GridViewCommandColumn ShowSelectCheckbox="True" SelectAllCheckboxMode="Page" VisibleIndex="0" Width="2%">
                     </dx:GridViewCommandColumn>
-                    <dx:GridViewDataColumn Caption="Tên khách hàng" FieldName="khachhang_name" HeaderStyle-HorizontalAlign="Center" Width="15%"></dx:GridViewDataColumn>
-                    <dx:GridViewDataColumn Caption="Mã hoá đơn" FieldName="hoadon_id" HeaderStyle-HorizontalAlign="Center" Width="15%"></dx:GridViewDataColumn>
-                    <dx:GridViewDataColumn Caption="Tổng tiền" FieldName="hoadon_tongtien" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
-                    <dx:GridViewDataColumn Caption="Tình Trạng" FieldName="hoadon_tinhtrang" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
-                    <dx:GridViewDataColumn Caption="Ngày mua" FieldName="hoadon_giothanhtoan" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
+                    <dx:GridViewDataColumn Caption="Tên khách hàng" FieldName="khachhang_name" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
+                    <dx:GridViewDataColumn Caption="Địa chỉ" FieldName="customer_address" HeaderStyle-HorizontalAlign="Center" Width="30%"></dx:GridViewDataColumn>
+                    <dx:GridViewDataColumn Caption="Số ĐT" FieldName="customer_phone" HeaderStyle-HorizontalAlign="Center" Width="10%"></dx:GridViewDataColumn>
+                    <dx:GridViewDataColumn Caption="Mã hoá đơn" FieldName="hoadon_id" HeaderStyle-HorizontalAlign="Center" Width="10%"></dx:GridViewDataColumn>
+                    <dx:GridViewDataColumn Caption="Tổng tiền" FieldName="hoadon_tongtien" HeaderStyle-HorizontalAlign="Center" Width="10%"></dx:GridViewDataColumn>
+                    <dx:GridViewDataColumn Caption="Tình Trạng" FieldName="hoadon_tinhtrang" HeaderStyle-HorizontalAlign="Center" Width="10%"></dx:GridViewDataColumn>
+                    <dx:GridViewDataColumn Caption="Ngày mua" FieldName="hoadon_giothanhtoan" HeaderStyle-HorizontalAlign="Center" Width="10%"></dx:GridViewDataColumn>
                 </Columns>
                 <ClientSideEvents RowDblClick="btnChiTiet" />
                 <SettingsSearchPanel Visible="true" />
@@ -79,34 +82,7 @@
                 <SettingsPager PageSize="20" Summary-Text="Trang {0} / {1} ({2} trang)"></SettingsPager>
             </dx:ASPxGridView>
         </div>
-        <table class="table">
-            <tr>
-                <th>Tên khách hàng</th>
-                <th>Mã hoá đơn</th>
-                <th>#</th>
-            </tr>
-            <asp:Repeater runat="server" ID="rpDaThanhToan">
-                <ItemTemplate>
-                    <tr>
-                        <td><%#Eval("khachhang_name") %></td>
-                        <td><%#Eval("hoadon_id") %></td>
-                        <td>
-                            <a href="#" class="btn btn-primary" onclick="getID(<%#Eval("hoadon_id") %>)">Xác nhận thanh toán</a>
-                        </td>
-                    </tr>
-                </ItemTemplate>
-            </asp:Repeater>
-        </table>
-        <div style="display: none">
-            <input type="text" id="txtIdHd" runat="server" name="name" value="" />
-            <a href="#" id="btnXacNhanThanhToan" runat="server" onserverclick="btnXacNhanThanhToan_ServerClick">content</a>
-            <script>
-                function getID(id) {
-                    document.getElementById(<%=txtIdHd.ClientID%>).value = id;
-                    document.getElementById(<%=btnXacNhanThanhToan.ClientID%>).click();
-                }
-            </script>
-        </div>
+        
     </div>
     <dx:ASPxPopupControl ID="popupControl" runat="server" Width="500px" Height="450px" CloseAction="CloseButton" ShowCollapseButton="True" ShowMaximizeButton="True" ScrollBars="Auto" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="popupControl" ShowFooter="true"
@@ -121,11 +97,9 @@
                                     <div class="col-12">
                                         <dx:ASPxGridView ID="grvHDCT" runat="server" ClientInstanceName="grvList" KeyFieldName="hoadon_id" Width="100%">
                                             <Columns>
-                                                <dx:GridViewCommandColumn ShowSelectCheckbox="True" SelectAllCheckboxMode="Page" VisibleIndex="0" Width="2%">
-                                                </dx:GridViewCommandColumn>
-                                                <dx:GridViewDataColumn Caption="Tên sản phẩm" FieldName="khachhang_name" HeaderStyle-HorizontalAlign="Center" Width="15%"></dx:GridViewDataColumn>
-                                                <dx:GridViewDataColumn Caption="Số lượng" FieldName="hoadon_id" HeaderStyle-HorizontalAlign="Center" Width="15%"></dx:GridViewDataColumn>
-                                                <dx:GridViewDataColumn Caption="Đơn giá" FieldName="hoadon_tongtien" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
+                                                <dx:GridViewDataColumn Caption="Tên sản phẩm" FieldName="product_title" HeaderStyle-HorizontalAlign="Center" Width="15%"></dx:GridViewDataColumn>
+                                                <dx:GridViewDataColumn Caption="Số lượng" FieldName="hdct_soluong" HeaderStyle-HorizontalAlign="Center" Width="15%"></dx:GridViewDataColumn>
+                                                <dx:GridViewDataColumn Caption="Đơn giá" FieldName="hdct_price" HeaderStyle-HorizontalAlign="Center" Width="20%"></dx:GridViewDataColumn>
                                             </Columns>
                                             <ClientSideEvents RowDblClick="btnChiTiet" />
                                             <SettingsSearchPanel Visible="true" />
@@ -145,13 +119,14 @@
         <FooterContentTemplate>
             <div class="mar_but button">
                 <asp:Button ID="btnLuu" runat="server" ClientIDMode="Static" Text="Duyệt đơn" CssClass="btn btn-primary" OnClientClick="return checkNULL()" OnClick="btnLuu_Click" />
+                <asp:Button ID="btnThanhToan" runat="server" ClientIDMode="Static" Text="Duyệt thanh toán" CssClass="btn btn-primary" OnClientClick="return checkNULL()" OnClick="btnThanhToan_Click" />
             </div>
         </FooterContentTemplate>
         <ContentStyle>
             <Paddings PaddingBottom="0px" />
         </ContentStyle>
     </dx:ASPxPopupControl>
-
+    
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="hibodybottom" runat="Server">
 </asp:Content>

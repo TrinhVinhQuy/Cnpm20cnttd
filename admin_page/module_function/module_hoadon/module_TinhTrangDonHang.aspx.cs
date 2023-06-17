@@ -33,21 +33,22 @@ public partial class admin_page_module_access_admin_UserManage : System.Web.UI.P
     private void loadData()
     {
         var getData = from hd in db.tbHoaDonBanHangs
-                      where hd.hoadon_tinhtrang == "Chờ duyệt"
-                      orderby hd.hoadon_giothanhtoan descending
-                      select hd;
-        grvList.DataSource = getData;
-        grvList.DataBind();
-        var getXong = from hd in db.tbHoaDonBanHangs
-                      where hd.hoadon_tinhtrang == "Đang giao"
+                      join tk in db.tbCustomerAccounts on hd.khachhang_id equals tk.customer_id
+                      where hd.hoadon_tinhtrang == "Chờ duyệt" || hd.hoadon_tinhtrang == "Đang giao"
                       orderby hd.hoadon_giothanhtoan descending
                       select new
                       {
-                          hd.khachhang_name,
                           hd.hoadon_id,
+                          hd.khachhang_name,
+                          tk.customer_phone,
+                          tk.customer_address,
+                          hd.hoadon_tongtien,
+                          hd.hoadon_tinhtrang,
+                          hd.hoadon_giothanhtoan,
                       };
-        rpDaThanhToan.DataSource = getXong;
-        rpDaThanhToan.DataBind();
+        grvList.DataSource = getData;
+        grvList.DataBind();
+        
     }
     private void setNULL()
     {
@@ -70,7 +71,7 @@ public partial class admin_page_module_access_admin_UserManage : System.Web.UI.P
                       orderby hd.hoadon_giothanhtoan descending
                       select new
                       {
-                          hd.hoadon_id,
+                          hdct.hoadon_id,
                           pr.product_title,
                           hdct.hdct_soluong,
                           hdct.hdct_price,
@@ -111,36 +112,26 @@ public partial class admin_page_module_access_admin_UserManage : System.Web.UI.P
 
     protected void btnLuu_Click(object sender, EventArgs e)
     {
-
-        if (Session["_id"].ToString() == "0")
-        {
-            tbHoaDonBanHang update = db.tbHoaDonBanHangs.Where(id => id.hoadon_id == _id).FirstOrDefault();
-            update.hoadon_tinhtrang = "Đang giao";
-            db.SubmitChanges();
-            ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "Detail", "popupControl.Show();", true);
-        }
-       
+        _id = Convert.ToInt32(grvList.GetRowValues(grvList.FocusedRowIndex, new string[] { "hoadon_id" }));
+        Session["_id"] = _id;
+        tbHoaDonBanHang update = db.tbHoaDonBanHangs.Where(id => id.hoadon_id == _id).FirstOrDefault();
+        update.hoadon_tinhtrang = "Đang giao";
+        db.SubmitChanges();
+        ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "Detail", "popupControl.Show();", true);
     }
 
-    //protected void grvList_HtmlRowCreated1(object sender, ASPxGridViewTableRowEventArgs e)
-    //{
-    //    if (e.RowType != GridViewRowType.Data) return;
+    
+   
 
-    //    ASPxLabel label = grvList.FindRowCellTemplateControl(e.VisibleIndex, null,
-    //    "txtGioitinh") as ASPxLabel;
-    //    var getData = (from gr in db.admin_Users
-    //                       //where gr.username_id == _id
-    //                   select gr).FirstOrDefault();
-    //    if (getData.username_gender == true)
-    //    {
-    //        label.Text = "Nam";
-    //    }
-    //}
 
-    protected void btnXacNhanThanhToan_ServerClick(object sender, EventArgs e)
+
+    protected void btnThanhToan_Click(object sender, EventArgs e)
     {
+        _id = Convert.ToInt32(grvList.GetRowValues(grvList.FocusedRowIndex, new string[] { "hoadon_id" }));
+        Session["_id"] = _id;
         tbHoaDonBanHang update = db.tbHoaDonBanHangs.Where(id => id.hoadon_id == _id).FirstOrDefault();
-        update.hoadon_tinhtrang = "Đã giao";
+        update.hoadon_tinhtrang = "Giao hàng thành công";
         db.SubmitChanges();
+        ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "Detail", "popupControl.Show();", true);
     }
 }
