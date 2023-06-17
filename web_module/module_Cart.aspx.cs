@@ -109,6 +109,7 @@ public partial class web_module_module_Cart : System.Web.UI.Page
                                      select acc).FirstOrDefault().customer_fullname;
             insert.hoadon_giothanhtoan = time;
             insert.hoadon_tongtien = cart.TotalBill().ToString();
+            insert.hoadon_tinhtrang = "Chờ duyệt"; // "Chờ duyệt" "Đã duyệt" "Xong"
             db.tbHoaDonBanHangs.InsertOnSubmit(insert);
             db.SubmitChanges();
 

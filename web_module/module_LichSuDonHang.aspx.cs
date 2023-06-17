@@ -22,6 +22,7 @@ public partial class web_module_module_LichSuDonHang : System.Web.UI.Page
                           hd.hoadon_id,
                           hd.hoadon_giothanhtoan,
                           hd.hoadon_tongtien,
+                          hd.hoadon_tinhtrang,
                       };
         rpLichSuDonHang.DataSource = getLSDH;
         rpLichSuDonHang.DataBind();

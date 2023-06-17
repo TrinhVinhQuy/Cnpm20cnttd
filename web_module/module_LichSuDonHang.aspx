@@ -13,6 +13,7 @@
                 <th>Mã hoá đon</th>
                 <th>Ngày mua</th>
                 <th>Tổng tiền</th>
+                <th>Tình Trạng</th>
                 <th>#</th>
             </tr>
             <asp:Repeater runat="server" ID="rpLichSuDonHang">
@@ -22,6 +23,7 @@
                         <td><%#Eval("hoadon_id") %></td>
                         <td><%#Eval("hoadon_giothanhtoan") %></td>
                         <td><%#Eval("hoadon_tongtien") %></td>
+                        <td><%#Eval("hoadon_tinhtrang") %></td>
                         <td><a href="#" onclick="getIDDH(<%#Eval("hoadon_id") %>)">Chi tiết</a></td>
                     </tr>
                 </ItemTemplate>

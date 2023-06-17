@@ -48,7 +48,7 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />--%>
         </asp:GridView>
         <br />
-        <asp:Button ID="btn_Xoa" runat="server" CssClass="input-dangnhap" OnClick="btn_Xoa_Click" Text="Trả hàng" />
+        <asp:Button ID="btn_Xoa" runat="server" CssClass="input-dangnhap" Width="7%" OnClick="btn_Xoa_Click" Text="Trả hàng" />
         <br />
         <br />
         <a href="#" runat="server" id="btnMuaHang" class="input-dangnhap" onserverclick="btnMuaHang_ServerClick">Mua hàng</a>
